@@ -1,7 +1,7 @@
 package dk.easj.anbo.collectwordsx;
 
+import androidx.test.ext.junit.rules.ActivityScenarioRule;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
-import androidx.test.rule.ActivityTestRule;
 
 import org.junit.Rule;
 import org.junit.Test;
@@ -23,16 +23,10 @@ import static androidx.test.espresso.matcher.ViewMatchers.withText;
 @RunWith(AndroidJUnit4.class)
 public class ExampleInstrumentedTest {
     @Rule
-    public ActivityTestRule<MainActivity> mActivityRule =
-            new ActivityTestRule(MainActivity.class);
+    public ActivityScenarioRule rule = new ActivityScenarioRule<>(MainActivity.class);
 
     @Test
     public void testIt() {
-        // Context of the app under test.
-        //Context appContext = InstrumentationRegistry.getTargetContext();
-
-        //assertEquals("dk.easj.anbo.collectwords", appContext.getPackageName());
-
         onView(withText("Type a word")).check(matches(isDisplayed()));
         onView(withId(R.id.mainWordEdittext)).perform(typeText("Anders"));
         onView(withId(R.id.mainButtonSave)).perform(click());
